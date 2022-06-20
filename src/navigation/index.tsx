@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome5, Ionicons, Entypo, AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -15,8 +15,12 @@ import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import HomeScreen from '../screens/HomeScreen/index';
+import MarketScreen from '../screens/MarketScreen/index';
+import PortfolioScreen from '../screens/PortfolioScreen/index';
+import ProfileScreen from '../screens/ProfileScreen/index';
+import RankingsScreen from '../screens/RankingsScreen/index';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
@@ -58,39 +62,44 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({}) => <TabBarIcon name="home" color={"#000"}/>,
+        }} 
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Market"
+        component={MarketScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+          tabBarIcon: ({}) => <FontAwesome5 name="chart-line" size={25} color={"#000"}/>,
+        }} 
+      />
+       <BottomTab.Screen
+        name="Portfolio"
+        component={PortfolioScreen}
+        options={{
+          tabBarIcon: ({}) => <AntDesign name="piechart" size={25} color={"#000"}/>,
+        }} 
+      />
+      <BottomTab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({}) => <FontAwesome name="user" size={25} color={"#000"}/>,
+        }} 
+      />
+      <BottomTab.Screen
+        name="Rankings"
+        component={RankingsScreen}
+        options={{
+          tabBarIcon: ({}) => <MaterialIcons name="leaderboard" size={25} color={"#000"}/>,
+        }} 
       />
     </BottomTab.Navigator>
   );
@@ -103,5 +112,13 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return (<FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />
+  );
+}
+function Anticon(props: {
+  name: React.ComponentProps<typeof FontAwesome>['name'];
+  color: string;
+}) {
+  return (<AntDesign size={30} style={{ marginBottom: -3 }} {...props} />
+  );
 }
