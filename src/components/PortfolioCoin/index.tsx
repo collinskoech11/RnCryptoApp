@@ -33,7 +33,7 @@ const PortfolioCoin = (props: PortfolioCoinProps) => {
                     <Text style={styles.symbol}>{symbol}</Text>
                 </View>
             </View>
-            <View>
+            <View style={{alignItems: 'flex-end'}}>
                 <Text style={styles.name}>{valueUSD}</Text>
                 <Text style={styles.symbol}>{symbol}{amount}</Text>
             </View>
