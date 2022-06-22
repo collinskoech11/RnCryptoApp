@@ -16,7 +16,7 @@ const ProfileScreen = () => {
     }
     return (
         <View style={styles.root}>
-            <Image style={styles.userImage} source={{uri: user.image}}/>
+            <Image style={styles.userImage} source={image}/>
             <View style={styles.userContainer}>
                 <View style={styles.left}>
                     <Image style={styles.userImage} source={{uri: user.image}}/>
