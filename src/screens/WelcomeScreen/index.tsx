@@ -1,14 +1,16 @@
-import { View, Text, Image, Pressable } from 'react-native'
+import { View, Text, Image, Pressable, Alert } from 'react-native'
 import React from 'react'
 import styles from './styles'
+// import {useNavigation} from '@react-navigation/native'
 const image = require( '../../../assets/images/Saly-1.png' );
 const googlebuttonimage = require( '../../../assets/images/google-button.png' );
 const applebuttonimage = require( '../../../assets/images/apple-button.png' );
-
+// const navigation = useNavigation();
 const WelcomeScreen = () => {
-    const signInGoogle = () => {
+const signInGoogle = () => { 
+    Alert.alert('working on it')
+}
 
-    }
     return (
         <View  style={styles.root}>
             <Image style={styles.image} source={image} />
