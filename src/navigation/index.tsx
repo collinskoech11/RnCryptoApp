@@ -19,6 +19,8 @@ import HomeScreen from '../screens/HomeScreen/index';
 import MarketScreen from '../screens/MarketScreen/index';
 import PortfolioScreen from '../screens/PortfolioScreen/index';
 import ProfileScreen from '../screens/ProfileScreen/index';
+import WelcomeScreen from '../screens/WelcomeScreen/index';
+import CoinExchangeScreen from '../screens/CoinExchangeScreen/index';
 import CoinDetailScreen from '../screens/CoinDetailScreen/index';
 import RankingsScreen from '../screens/RankingsScreen/index';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
@@ -43,18 +45,32 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator>
+       <Stack.Screen 
+        name="Welcome" 
+        component={WelcomeScreen}
+        options={{ 
+          title: "Price Data"
+        }}
+      />
       <Stack.Screen 
         name="Root" 
         component={BottomTabNavigator} 
         options={{ headerShown: false }} 
       />
+       <Stack.Screen 
+        name="CoinExchange" 
+        component={CoinExchangeScreen}
+        options={{ 
+          title: "Price Data"
+        }}
+      />
       <Stack.Screen 
-      name="CoinDetails" 
-      component={CoinDetailScreen}
-      options={{ 
-        title: "Price Data"
-      }}
-    />
+        name="CoinDetails" 
+        component={CoinDetailScreen}
+        options={{ 
+          title: "Price Data"
+        }}
+      />
       
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>

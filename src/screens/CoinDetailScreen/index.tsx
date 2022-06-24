@@ -3,6 +3,48 @@ import {View, Text, Image, Pressable} from 'react-native';
 import styles from "./styles";
 import {AntDesign} from "@expo/vector-icons";
 import PercentageChange from '../../components/PercentageChange/index'
+import CoinPriceGraph from '../../components/CoinPriceGraph/index';
+import { useNavigation } from '@react-navigation/native';
+
+const historyString = JSON.stringify(
+    [
+        42353.9832719397,
+        33323.9832719397,
+        43353.9832719397,
+        23353.9832719397,
+        43353.9832719397,
+        33323.9832719397,
+        43335.9832719397,
+        23353.9832729397,
+        33353.9832719397,
+        43253.9832719397,
+        53352.9836719397,
+        43253.9832719397,
+        33353.9832729397,
+        23352.9832719397,
+        43353.9832719397,
+        42353.9832719397,
+        43353.9822719397,
+        23353.9832719397,
+        42353.9832719397,
+        33323.9832719397,
+        43353.9832719397,
+        23353.9832719397,
+        43353.9832719397,
+        33323.9832719397,
+        43335.9832719397,
+        23353.9832729397,
+        33353.9832719397,
+        43253.9832719397,
+        53352.9836719397,
+        43253.9832719397,
+        33353.9832729397,
+        23352.9832719397,
+        43353.9832719397,
+        42353.9832719397,
+        43353.9822719397,
+        23353.9832719397]
+)
 
 const CoinDetailScreen = () => {
     const [coinData, setCoinData ] = useState({
@@ -18,12 +60,14 @@ const CoinDetailScreen = () => {
         amount: 2,
     })
 
+    const navigation = useNavigation();
+
     const onBuy = () => {
-        console.warn('Buy crypto')
+        navigation.navigate('CoinExchange', { isBuy: true, coinData})
     }
 
     const onSell = () => {
-        console.warn('Sell crypto')
+        navigation.navigate('CoinExchange', { isBuy: false, coinData})
     }
     return (
         <>
@@ -64,6 +108,7 @@ const CoinDetailScreen = () => {
                     </View>
                 </View>
             </View>
+            <CoinPriceGraph dataString={historyString}/>
             <View style={styles.row}>
                 <Text>Position</Text>
                 <Text>
